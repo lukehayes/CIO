@@ -49,7 +49,7 @@ BufferData* ReadFileIntoBuffer(const char* toml_file)
 
 void DestroyBufferData(BufferData* buffer)
 {
-    printf("Buffer of size: %li freed. \n", buffer->size);
+    /*printf("Buffer of size: %li freed. \n", buffer->size);*/
     free(buffer->data);
     free(buffer);
 }
