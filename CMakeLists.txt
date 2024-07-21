@@ -22,7 +22,7 @@ include_directories(${INCLUDE_DIRS})
 # -----------------------------------------------------------------------------
 # Create the final binary
 # 
-add_executable(${BIN_NAME} main.c "${PROJECT_SOURCE_DIR}/src/io.c")
+#add_executable(${BIN_NAME} main.c "${PROJECT_SOURCE_DIR}/src/io.c")
 
 
 # -----------------------------------------------------------------------------
@@ -38,5 +38,5 @@ add_library(${CIO_LIB} STATIC
 # -----------------------------------------------------------------------------
 # Link the libraries
 # 
-target_link_libraries(${BIN_NAME} ${CIO_LIB})
+#target_link_libraries(${BIN_NAME} ${CIO_LIB})
 
