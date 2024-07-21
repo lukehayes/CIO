@@ -4,7 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct BufferData;
+typedef struct BufferData
+{
+    char* data;
+    size_t size;
+
+} BufferData;
 
 /**
  * Get the size of a file in bytes.

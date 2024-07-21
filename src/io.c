@@ -1,12 +1,5 @@
 #include "io.h"
 
-typedef struct BufferData
-{
-	char* data;
-	size_t size;
-
-} BufferData;
-
 
 size_t GetFileSize(FILE* fp)
 {
