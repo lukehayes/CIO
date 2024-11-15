@@ -17,7 +17,7 @@ size_t IOGetFileSize(FILE* fp)
     return file_length;
 }
 
-const char* ReadFile(const char* file)
+const char* IOReadFile(const char* file)
 {
     FILE* fp = fopen(file, "r+");
 
