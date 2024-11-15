@@ -26,11 +26,11 @@ include_directories(${INCLUDE_DIRS})
 
 
 # -----------------------------------------------------------------------------
-# Build the Toml Parser Library
+# Build the CIO Library
 # 
 set(CIO_LIB "CIO")
 
-add_library(${CIO_LIB} STATIC
+add_library(${CIO_LIB} SHARED
   "${SRC_DIR}/io.c"
 )
 
