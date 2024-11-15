@@ -1,15 +1,9 @@
-#ifndef LDH_CIO_H
-#define LDH_CIO_H
+#ifndef CIO_H
+#define CIO_H
 
 #include <stdio.h>
-#include <stdlib.h>
 
-typedef struct BufferData
-{
-    char* data;
-    size_t size;
-
-} BufferData;
+typedef struct BufferData BufferData;
 
 /**
  * Get the size of a file in bytes.
@@ -18,25 +12,27 @@ typedef struct BufferData
  *
  * @return int
  */
-size_t GetFileSize(FILE* fp);
+size_t IOGetFileSize(FILE* fp);
 
 /**
- * Read the contents of a file and store it in memory.
+ * Read the contents of a file and store it in a character array.
  *
- * @param const char* toml_file    The name of the .toml file
+ * @param const char* file    The name of the file to be read.
  *
  * @return const char*
  */
-const char* ReadFile(const char* toml_file);
+const char* IOReadFile(const char* file);
 
 /**
- * Read the contents of a file into BufferData struct. 
+ * Read the contents of a file into BufferData struct.
  *
- * @param const char* toml_file    The name of the .toml file
+ * Data must be freed when nolonger needed.
+ *
+ * @param const char* file    The name of the file to be read.
  *
  * @return BufferData*
  */
-struct BufferData* ReadFileIntoBuffer(const char* toml_file);
+struct BufferData* IOReadFileIntoBuffer(const char* file);
 
 /**
  * Free all of the memory associated with the buffer.
@@ -45,7 +41,7 @@ struct BufferData* ReadFileIntoBuffer(const char* toml_file);
  *
  * @return void
  */
-void DestroyBufferData(struct BufferData* buffer);
+void IODestroyBufferData(struct BufferData* buffer);
 
 
 #endif // !LDH_CIO_H

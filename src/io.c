@@ -1,7 +1,14 @@
 #include "io.h"
+#include <stdlib.h>
 
+typedef struct BufferData
+{
+    char* data;
+    size_t size;
 
-size_t GetFileSize(FILE* fp)
+} BufferData;
+
+size_t IOGetFileSize(FILE* fp)
 {
     fseek(fp, 0, SEEK_END);
     int file_length = ftell(fp);
@@ -10,15 +17,15 @@ size_t GetFileSize(FILE* fp)
     return file_length;
 }
 
-const char* ReadFile(const char* toml_file)
+const char* ReadFile(const char* file)
 {
-    FILE* fp = fopen(toml_file, "r+");
+    FILE* fp = fopen(file, "r+");
 
-    int file_length = GetFileSize(fp);
+    int file_length = IOGetFileSize(fp);
     char* buffer = malloc(sizeof(char) * file_length + 1);
 
     if(ferror(fp))
-        printf("An error occurred opening file %s \n", toml_file);
+        printf("An error occurred opening file %s \n", file);
 
     fread(buffer, 1, file_length,fp);
 
@@ -27,14 +34,14 @@ const char* ReadFile(const char* toml_file)
     return buffer;
 }
 
-BufferData* ReadFileIntoBuffer(const char* toml_file)
+BufferData* IOReadFileIntoBuffer(const char* file)
 {
-    FILE* fp = fopen(toml_file, "r+");
+    FILE* fp = fopen(file, "r+");
 
-    int file_length = GetFileSize(fp);
+    int file_length = IOGetFileSize(fp);
 
     if(ferror(fp))
-        printf("An error occurred opening file %s \n", toml_file);
+        printf("An error occurred opening file %s \n", file);
 
     BufferData* buffer = malloc(sizeof(BufferData));
     buffer->data = malloc(sizeof(char) * file_length);
@@ -47,7 +54,7 @@ BufferData* ReadFileIntoBuffer(const char* toml_file)
     return buffer;
 }
 
-void DestroyBufferData(BufferData* buffer)
+void IODestroyBufferData(BufferData* buffer)
 {
     /*printf("Buffer of size: %li freed. \n", buffer->size);*/
     free(buffer->data);
